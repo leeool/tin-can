@@ -14,7 +14,7 @@ export ZSH="$HOME/.oh-my-zsh"
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 
 # ZSH_THEME="awesomepanda"
-ZSH_THEME="spaceship"
+ZSH_THEME="spaceship/spaceship"
 
 SPACESHIP_PROMPT_ORDER=(
   time
@@ -84,15 +84,13 @@ SPACESHIP_CHAR_SUFFIX=" "
 # HIST_STAMPS="mm/dd/yyyy"
 
 # Would you like to use another custom folder than $ZSH/custom?
-# ZSH_CUSTOM=/path/to/new-custom-folder
+ZSH_CUSTOM=$HOME/.oh-my-zsh/
 
 # Which plugins would you like to load?
 # Standard plugins can be found in $ZSH/plugins/
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-autosuggestions)
-
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
@@ -112,7 +110,8 @@ source $ZSH/oh-my-zsh.sh
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
-source /home/leoldev/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /home/leolarch/.oh-my-zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /home/leolarch/.oh-my-zsh/plugins/vi-mode/vi-mode.plugin.zsh
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
@@ -130,26 +129,29 @@ source /home/leoldev/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # zstyle :prompt:pure:git:stash show yes
 
-# OPÇÕES
-PURE_CMD_MAX_EXEC_TIME=10
-
 # pnpm
-export PNPM_HOME="/home/leoldev/.local/share/pnpm"
-export PATH="$PNPM_HOME:$PATH"
+export PNPM_HOME="/home/leolarch/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
 # pnpm end
 
-export ANDROID_HOME=$HOME/Android/sdk
-export PATH=$PATH:$ANDROID_HOME/emulator
-export PATH=$PATH:$ANDROID_HOME/platform-tools
+# OPÇÕES
+PURE_CMD_MAX_EXEC_TIME=10
 
 # aliases
 
 alias zshrc="nvim ~/.zshrc"
-alias app="cd ~/.local/share/applications"
-alias y="yazi"
-alias nvimc="cd ~/.config/nvim/"
+alias nvimrc="nvim ~/.config/nvim/"
 alias ls="ls -lh -F --color"
-alias emacs="emacs -nw"
+alias lso="ls -lh -F --color -tr"
+alias rm="rm -rf -I --preserve-root"
+alias shutters="shutter -s"
+alias lock="i3lock -c '#212121'"
+alias pacman="sudo pacman"
+alias du="du -sh"
+alias dua="du *"
+alias thorium="thorium-browser"
 
 # startup commands
-ls
