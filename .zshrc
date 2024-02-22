@@ -112,6 +112,7 @@ source $ZSH/oh-my-zsh.sh
 
 source /home/leolarch/.oh-my-zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source /home/leolarch/.oh-my-zsh/plugins/vi-mode/vi-mode.plugin.zsh
+source /home/leolarch/.oh-my-zsh/plugins/history/history.plugin.zsh
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
