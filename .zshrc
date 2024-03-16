@@ -151,7 +151,7 @@ alias rm="rm -rf -I --preserve-root"
 alias shutters="shutter -s"
 alias lock="i3lock -c '#212121'"
 alias pacman="sudo pacman"
-alias du="du -sh"
+alias du="du -shc"
 alias dua="du *"
 alias thorium="thorium-browser"
 
