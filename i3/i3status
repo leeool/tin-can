@@ -1,6 +1,6 @@
 general {
         colors = true
-        interval = 10
+        interval = 5
 }
 
 # order += "ipv6"
@@ -8,10 +8,17 @@ general {
 # order += "ethernet _first_"
 # order += "battery all"
 order += "cpu_usage"
+order += "cpu_temperature 1"
 order += "disk /"
 order += "memory"
+order += "volume master"
+order += "battery 1"
 order += "tztime local"
 
+cpu_temperature 1 {
+        format = "T: %degrees °C"
+        path = "/sys/devices/platform/coretemp.0/hwmon/hwmon7/temp1_input"
+}
 
 cpu_usage {
   format = "CPU %usage"
@@ -19,7 +26,7 @@ cpu_usage {
 }
 
 disk "/" {
-        format = "porn folder: %avail"
+        format = "porn folder: %used"
 }
 
 memory {
@@ -27,6 +34,27 @@ memory {
         threshold_degraded = "1G"
         format_degraded = "MEMORY < %available"
 }
+
+volume master {
+        format = "  %volume"
+        format_muted = "  Muted"
+        device = "default"
+        mixer = "Master"
+        mixer_idx = 0
+}
+
+battery 1 {
+	last_full_capacity = true
+        format = "%status %percentage"
+        format_down = "  No Battery"
+        status_chr = "  Charging"
+        status_bat = "  Battery"
+        status_unk = "  Unknown"
+        status_full = "  Charged"
+        path = "/sys/class/power_supply/BAT%d/uevent"
+        low_threshold = 10
+}
+
 
 tztime local {
        format = "%A, %d/%m/%Y - %H:%M "
